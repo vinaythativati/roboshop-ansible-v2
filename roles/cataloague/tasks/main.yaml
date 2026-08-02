@@ -64,10 +64,10 @@
     - mongodb
   - name : deamon relaod
     systemd_service :
-      name : catloague
+      name : cataloague
       daemon_reload : true
-  - name : enable and start catloague
+  - name : enable and start cataloague
     service :
-      name : catloague
+      name : cataloague
       state : started
       enabled : yes
