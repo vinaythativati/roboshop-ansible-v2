@@ -15,7 +15,7 @@
     file :
       path : /app  
       state : absent
-  - name : delete catloague.zip directory
+  - name : delete cataloague.zip directory
     file :
       path : /tmp/catalogue.zip
       state : absent
@@ -47,14 +47,14 @@
     package :
       name : mongodb-mongosh 
       state : present
-  - name : catloageu schema exist are not
+  - name : cataloague schema exist are not
     shell: mongosh --host "{{ MONGODB_HOST }}" --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
-    register : catloague_output
+    register : cataloague_output
     tags :
     - mongodb
   - name : printing the data
     debug :
-      msg : "{{catloague_output}}"
+      msg : "{{cataloague_output}}"
     tags :
     - mongodb
   - name : load the products
