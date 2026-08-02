@@ -59,7 +59,7 @@
     - mongodb
   - name : load the products
     shell : mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
-    when  : caloague_output.stdout | int < 0 
+    when  : cataloague_output.stdout | int < 0 
     tags :
     - mongodb
   - name : deamon relaod
