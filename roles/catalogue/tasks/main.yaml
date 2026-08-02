@@ -1,0 +1,73 @@
+  - name : enable the nodejs 20
+    command : dnf module disable nodejs -y
+  - name : installing node js 
+    package :
+      name : nodejs 
+      state : present
+  - name : creating system user
+    user :
+      name : roboshop
+      comment : 'roboshop system user'
+      shell : /sbin/nologin
+      system : true
+      home :  /app
+  - name : remove directory
+    file :
+      path : /app  
+      state : absent
+  - name : delete catloague.zip directory
+    file :
+      path : /tmp/catalogue.zip
+      state : absent
+  - name : creating directory
+    file :
+      path : /app  
+      state : directory
+  - name : download applicatin code
+    get_url :
+      url : https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+      dest : /tmp/catalogue.zip
+  - name : unzip application
+    unarchive : 
+      src : /tmp/catalogue.zip
+      dest : /app
+      remote_src : yes
+  - name : installing dependence
+    community.general.npm:
+      path : /app
+  - name : copy template file 
+    ansible.builtin.template:
+      src: catloague_service.j2
+      dest: /etc/systemd/system/catalogue.service
+  - name : copy the mongodb repo
+    copy :
+      src : mongo.repo
+      dest : /etc/yum.repos.d/mongo.repo
+  - name : install mongodb
+    package :
+      name : mongodb-mongosh 
+      state : present
+  - name : catloageu schema exist are not
+    shell: mongosh --host "{{ MONGODB_HOST }}" --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+    register : catloague_output
+    tags :
+    - mongodb
+  - name : printing the data
+    debug :
+      msg : "{{catloague_output}}"
+    tags :
+    - mongodb
+  - name : load the products
+    shell : mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
+    when  : caloague_output.stdout | int < 0 
+    tags :
+    - mongodb
+  - name : deamon relaod
+    systemd_service :
+      name : catloague
+      daemon_reload : true
+  - name : enable and start catloague
+    service :
+      name : catloague
+      state : started
+      enabled : yes
