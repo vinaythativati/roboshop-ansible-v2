@@ -37,7 +37,7 @@
       path : /app
   - name : copy template file 
     ansible.builtin.template:
-      src: catloague_service.j2
+      src: cataloague_service.j2
       dest: /etc/systemd/system/catalogue.service
   - name : copy the mongodb repo
     copy :
