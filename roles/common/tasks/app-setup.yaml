@@ -21,7 +21,7 @@
   - name : download applicatin code
     get_url :
       url : "https://roboshop-artifacts.s3.amazonaws.com/{{component}}-v3.zip"
-      dest : "/tmp/component.zip"
+      dest : "/tmp/{{component}}.zip"
   - name : unzip application
     unarchive : 
       src : "/tmp/{{component}}.zip"
