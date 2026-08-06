@@ -1,0 +1,17 @@
+  - name : installing python3
+    package :
+      name : " {{item}}"
+      state : present
+    loop : 
+    - python3
+    - gcc
+    - python3-devel
+  
+
+  - name : download dependencies
+    pip :
+      name : pip3
+      requirements : requirements.txt
+      executable : pip3.9
+      args :
+        chdir : /app
