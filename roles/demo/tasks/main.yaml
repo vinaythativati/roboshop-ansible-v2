@@ -3,5 +3,5 @@
     mgs: executing demo file
 
 - name : loading the common role here
-  import_roles :
+  import_role :
     name : common
