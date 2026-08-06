@@ -5,3 +5,4 @@
 - name : loading the common role here
   import_role :
     name : common
+    tasks_from : hello.yaml
