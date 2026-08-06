@@ -1,6 +1,6 @@
 - name : this is a demo file
   debug : 
-    mgs: executing demo file
+    mgs: "executing demo file"
 
 - name : loading the common role here
   import_role :
