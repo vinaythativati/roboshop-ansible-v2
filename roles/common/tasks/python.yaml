@@ -12,4 +12,5 @@
     pip :
       requirements : requirements.txt
       executable : pip3.9
-      chdir : /app
+      args :
+        chdir : /app
