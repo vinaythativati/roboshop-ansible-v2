@@ -1,10 +1,10 @@
 - name : mysql pasword
   debug : 
-    msg : "{{ lookup('amazon.aws.aws_secret', 'roboshop/mysql_password', region='us-east-1') }}"
+    msg : "{{ lookup('amazon.aws.aws_secret', 'roboshop/mysql_password', region='us-east-1')  }}"
 
 - name : printing password
   debug :
-    msg : "{{mysql_password}}"
+    msg : "{{password.mysql_password}}"
 
 - name : installing mysql-server
   package :
