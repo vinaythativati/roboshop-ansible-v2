@@ -1,6 +1,4 @@
-ansible_user : "ec2-user"
-ansible_password : "DevOps321"
-MONGODB_HOST : "54.167.122.101"
+MONGODB_HOST : "10.0.14.224"
 CATALOGUE_HOST: "34.203.198.22"
 MYSQL_HOST: "3.89.114.66"
 RABBITMQ_HOST: "54.234.166.127"
